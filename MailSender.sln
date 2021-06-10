@@ -5,6 +5,12 @@ VisualStudioVersion = 16.0.31321.278
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MailSender", "MailSender\MailSender.csproj", "{8B69F97F-5DD4-49DF-828E-5D9DB29EDB6F}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{9AAB9023-ABAA-4BAB-8DB8-CBD36A23D00D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MailSender.TestConsole", "Tests\MailSender.TestConsole\MailSender.TestConsole.csproj", "{BEDE8D1B-405E-40E0-A8F3-C263369B5114}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MailSender.TestWPF", "Tests\MailSender.TestWPF\MailSender.TestWPF.csproj", "{A6E81100-B270-4919-8E7A-9C484FA3B3D1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,9 +21,21 @@ Global
 		{8B69F97F-5DD4-49DF-828E-5D9DB29EDB6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8B69F97F-5DD4-49DF-828E-5D9DB29EDB6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8B69F97F-5DD4-49DF-828E-5D9DB29EDB6F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BEDE8D1B-405E-40E0-A8F3-C263369B5114}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BEDE8D1B-405E-40E0-A8F3-C263369B5114}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BEDE8D1B-405E-40E0-A8F3-C263369B5114}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BEDE8D1B-405E-40E0-A8F3-C263369B5114}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6E81100-B270-4919-8E7A-9C484FA3B3D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6E81100-B270-4919-8E7A-9C484FA3B3D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6E81100-B270-4919-8E7A-9C484FA3B3D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6E81100-B270-4919-8E7A-9C484FA3B3D1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{BEDE8D1B-405E-40E0-A8F3-C263369B5114} = {9AAB9023-ABAA-4BAB-8DB8-CBD36A23D00D}
+		{A6E81100-B270-4919-8E7A-9C484FA3B3D1} = {9AAB9023-ABAA-4BAB-8DB8-CBD36A23D00D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7FED0B08-4E34-46F3-986D-B509ACB7854C}
