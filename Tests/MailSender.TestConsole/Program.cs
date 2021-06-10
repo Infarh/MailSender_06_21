@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Net;
+using System.Net.Mail;
+
 
 namespace MailSender.TestConsole
 {
@@ -6,7 +9,16 @@ namespace MailSender.TestConsole
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            using var message = new MailMessage("shmachilin@yandex.ru", "shmachilin@gmail.com");
+
+            using var client = new SmtpClient("smtp.yandex.ru", 465);
+            client.Credentials = new NetworkCredential
+            {
+                UserName = "shmachilin",
+                Password = "123"
+            };
+
+            client.Send(message);
         }
     }
 }
