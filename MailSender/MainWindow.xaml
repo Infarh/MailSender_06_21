@@ -24,7 +24,47 @@
             </StatusBarItem>
         </StatusBar>
         <TabControl>
-            <TabItem Header="Списки"></TabItem>
+            <TabItem Header="Списки">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <ToolBarTray Grid.Row="0">
+                        <ToolBar>
+                            <Label Content="Сервера" Margin="0,0,25,0"/>
+                            <ComboBox Width="120" SelectedIndex="0">
+                                <ComboBoxItem Content="Сервер 1"/>
+                                <ComboBoxItem Content="Сервер 2"/>
+                                <ComboBoxItem Content="Сервер 3"/>
+                            </ComboBox>
+                            <Button Content="Добавить"/>
+                            <Button Content="Редактировать"/>
+                            <Button Content="Удалить"/>
+                        </ToolBar>
+                        <ToolBar Band="1" BandIndex="0">
+                            <Label Content="Отправители"/>
+                            <ComboBox Width="120" SelectedIndex="0">
+                                <ComboBoxItem Content="Отправитель 1"/>
+                                <ComboBoxItem Content="Отправитель 2"/>
+                                <ComboBoxItem Content="Отправитель 3"/>
+                            </ComboBox>
+                            <Button Content="Добавить"/>
+                            <Button Content="Редактировать"/>
+                            <Button Content="Удалить"/>
+                        </ToolBar>
+                        <ToolBar Header="Планировщик">
+                            <Button Content="Перейти в планировщик"/>
+                        </ToolBar>
+                        <ToolBar Header="Получатели" Band="1" BandIndex="1">
+                            <Button Content="Добавить"/>
+                            <Button Content="Редактировать"/>
+                            <Button Content="Удалить"/>
+                        </ToolBar>
+                    </ToolBarTray>
+
+                </Grid>
+            </TabItem>
             <TabItem Header="Расписание"></TabItem>
             <TabItem Header="Письма"></TabItem>
             <TabItem Header="Статистика"></TabItem>
