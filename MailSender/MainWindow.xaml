@@ -6,7 +6,7 @@
         xmlns:fa="http://schemas.fontawesome.com/icons/"
         xmlns:l="clr-namespace:MailSender"
         xmlns:data="clr-namespace:MailSender.Data"
-        xmlns:model="clr-namespace:MailSender.Models"
+        xmlns:model="clr-namespace:MailSender.Models;assembly=MailSender.lib"
         Title="Рассыльщик почты"
         Topmost="True"
         Width="800" Height="450">
@@ -259,7 +259,7 @@
                     </GroupBox>
                 </Grid>
             </TabItem>
-            <TabItem Header="Статистика"></TabItem>
+            <TabItem Header="Статистика" IsEnabled="False"></TabItem>
         </TabControl>
     </DockPanel>
 </Window>

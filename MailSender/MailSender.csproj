@@ -19,6 +19,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\MailSender.lib\MailSender.lib.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="Media\add.png" />
     <Resource Include="Media\clock.png" />
     <Resource Include="Media\edit.png" />
