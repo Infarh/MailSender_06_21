@@ -38,9 +38,25 @@
                                 <ComboBoxItem Content="Сервер 2"/>
                                 <ComboBoxItem Content="Сервер 3"/>
                             </ComboBox>
-                            <Button Content="Добавить"/>
-                            <Button Content="Редактировать"/>
-                            <Button Content="Удалить"/>
+                            <Button>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Height="20" Source="Media/add.png" Margin="0,0,3,0"/>
+                                    <TextBlock Text="Добавить"/>
+                                </StackPanel>
+                            </Button>
+                            <Button ToolTip="Редактирование">
+                                <Image Height="20" Source="Media/edit.png"/>
+                            </Button>
+                            <Button>
+                                <Button.ToolTip>
+                                    <StackPanel>
+                                        <TextBlock Text="Строка 1"/>
+                                        <TextBlock Text="Строка 2"/>
+                                        <TextBlock Text="Строка 3"/>
+                                    </StackPanel>
+                                </Button.ToolTip>
+                                <Image Height="20" Source="Media/remove.png"/>
+                            </Button>
                         </ToolBar>
                         <ToolBar Band="1" BandIndex="0">
                             <Label Content="Отправители"/>
