@@ -4,6 +4,16 @@
              xmlns:local="clr-namespace:MailSender"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="White"/>
+        </Style>
+
+        <Style TargetType="Menu">
+            <Setter Property="DockPanel.Dock" Value="Top"/>
+        </Style>
+
+        <Style TargetType="StatusBar">
+            <Setter Property="DockPanel.Dock" Value="Bottom"/>
+        </Style>
     </Application.Resources>
 </Application>
