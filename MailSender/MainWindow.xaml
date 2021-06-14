@@ -107,7 +107,14 @@
                                     ToolTip="Удаление"/>
                         </ToolBar>
                     </ToolBarTray>
-
+                    <DataGrid Grid.Row="1" AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID" MinWidth="40" MaxWidth="80"/>
+                            <DataGridTextColumn Header="Имя" Width="*" MinWidth="150"/>
+                            <DataGridTextColumn Header="Адрес" MinWidth="140"/>
+                            <DataGridTextColumn Header="Описание" MinWidth="120"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
                 </Grid>
             </TabItem>
             <TabItem Header="Расписание"></TabItem>
