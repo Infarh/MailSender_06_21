@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="FontAwesome5" Version="2.1.2" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Media\add.png" />
     <None Remove="Media\clock.png" />
     <None Remove="Media\edit.png" />
