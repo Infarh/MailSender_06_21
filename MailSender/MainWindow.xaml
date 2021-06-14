@@ -8,6 +8,7 @@
         xmlns:data="clr-namespace:MailSender.Data"
         xmlns:model="clr-namespace:MailSender.Models"
         Title="Рассыльщик почты"
+        Topmost="True"
         Width="800" Height="450">
     <DockPanel>
         <Menu>
@@ -236,19 +237,23 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <GroupBox Grid.Column="0" Header="Письма">
-                        <ListBox>
-                            <ListBoxItem>Письмо 1</ListBoxItem>
-                            <ListBoxItem>Письмо 2</ListBoxItem>
-                            <ListBoxItem>Письмо 3</ListBoxItem>
+                        <ListBox ItemsSource="{x:Static data:TestData.Messages}"
+                                 Name="MessageList">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Title}" ToolTip="{Binding Text}"/>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
                         </ListBox>
                     </GroupBox>
                     <GroupBox Grid.Column="1" Header="Редактор">
                         <DockPanel>
                             <GroupBox Header="Заголовок" DockPanel.Dock="Top">
-                                <TextBox/>
+                                <TextBox Text="{Binding SelectedItem.Title, ElementName=MessageList}"/>
                             </GroupBox>
                             <GroupBox Header="Текст письма">
-                                <TextBox AcceptsReturn="True" AcceptsTab="True"/>
+                                <TextBox AcceptsReturn="True" AcceptsTab="True"
+                                         Text="{Binding SelectedItem.Text, ElementName=MessageList}"/>
                             </GroupBox>
                         </DockPanel>
                     </GroupBox>
