@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Security.Cryptography.X509Certificates;
 using System.Windows;
+using MailSender.Interfaces;
 using MailSender.Servcies;
+using MailSender.Services;
 using MailSender.ViewModels;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -30,6 +32,9 @@ namespace MailSender
         {
             services.AddTransient<MainWindowViewModel>();
             services.AddSingleton<ServersRepository>();
+
+            services.AddSingleton<IStatistic, InMemoryStatisticService>();
+            services.AddSingleton<IMailService, DebugMailService>();
         }
 
         protected override void OnStartup(StartupEventArgs e)

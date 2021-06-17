@@ -148,7 +148,7 @@
                                         <Setter Property="Margin" Value="3"/>
                                     </Style>
                                 </StackPanel.Resources>
-                                <Button Content="Отправить сейчас"/>
+                                <Button Content="Отправить сейчас" Command="{Binding SendMessageCommand}"/>
                                 <Button Content="Запланировать"/>
                             </StackPanel>
                         </StackPanel>
