@@ -37,9 +37,10 @@
                     <ToolBarTray Grid.Row="0">
                         <ToolBar>
                             <Label Content="Сервера" Margin="0,0,25,0"/>
-                            <ComboBox Width="120" SelectedIndex="0" Name="ServersList"
-                                      ItemsSource="{x:Static data:TestData.Servers}"
+                            <ComboBox Width="120" SelectedIndex="0"
+                                      ItemsSource="{Binding Servers}"
                                       DisplayMemberPath="Name"/>
+                            <Button fa:Awesome.Content="Solid_Download" Command="{Binding LoadServersCommand}"/>
                             <Button>
                                 <StackPanel Orientation="Horizontal">
                                     <Image Height="20" Source="Media/add.png" Margin="0,0,3,0"/>
