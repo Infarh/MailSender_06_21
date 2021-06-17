@@ -1,14 +1,10 @@
-﻿using System.Windows;
-
-namespace MailSender
+﻿namespace MailSender
 {
     public partial class MainWindow
     {
-        public MainWindow() => InitializeComponent();
-
-        private void Exit_OnClick(object Sender, RoutedEventArgs E)
+        public MainWindow()
         {
-            Close();
+            InitializeComponent();
         }
     }
 }

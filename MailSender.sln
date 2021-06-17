@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31321.278
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MailSender", "MailSender\MailSender.csproj", "{8B69F97F-5DD4-49DF-828E-5D9DB29EDB6F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MailSender", "MailSender\MailSender.csproj", "{8B69F97F-5DD4-49DF-828E-5D9DB29EDB6F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{9AAB9023-ABAA-4BAB-8DB8-CBD36A23D00D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MailSender.TestConsole", "Tests\MailSender.TestConsole\MailSender.TestConsole.csproj", "{BEDE8D1B-405E-40E0-A8F3-C263369B5114}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MailSender.TestConsole", "Tests\MailSender.TestConsole\MailSender.TestConsole.csproj", "{BEDE8D1B-405E-40E0-A8F3-C263369B5114}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MailSender.TestWPF", "Tests\MailSender.TestWPF\MailSender.TestWPF.csproj", "{A6E81100-B270-4919-8E7A-9C484FA3B3D1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MailSender.TestWPF", "Tests\MailSender.TestWPF\MailSender.TestWPF.csproj", "{A6E81100-B270-4919-8E7A-9C484FA3B3D1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MailSender.lib", "MailSender.lib\MailSender.lib.csproj", "{DAFD7D7E-1333-4CFB-B6C7-65914E528706}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,6 +31,10 @@ Global
 		{A6E81100-B270-4919-8E7A-9C484FA3B3D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A6E81100-B270-4919-8E7A-9C484FA3B3D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A6E81100-B270-4919-8E7A-9C484FA3B3D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DAFD7D7E-1333-4CFB-B6C7-65914E528706}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DAFD7D7E-1333-4CFB-B6C7-65914E528706}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DAFD7D7E-1333-4CFB-B6C7-65914E528706}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DAFD7D7E-1333-4CFB-B6C7-65914E528706}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
