@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:l="clr-namespace:MailSender.TestWPF"
         xmlns:vm="clr-namespace:MailSender.TestWPF.ViewModels"
+        xmlns:cmd="clr-namespace:MailSender.TestWPF.Commands"
         Topmost="True"
         Title="{Binding Title}"
         Width="800" Height="450">
@@ -43,5 +44,15 @@
 
        <TextBox VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="160" Margin="10"
                 Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}"/>
+
+       <Button VerticalAlignment="Top" HorizontalAlignment="Left" Margin="40" Content="Привет!"
+               Padding="30,10" RenderTransformOrigin="0.5,0.5">
+           <Button.Command>
+               <cmd:HelloCommand/>
+           </Button.Command>
+           <Button.RenderTransform>
+                <RotateTransform Angle="-30"/>
+            </Button.RenderTransform>
+        </Button>
     </Grid>
 </Window>
