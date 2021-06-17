@@ -4,10 +4,14 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:l="clr-namespace:MailSender.TestWPF"
+        xmlns:vm="clr-namespace:MailSender.TestWPF.ViewModels"
         Topmost="True"
-        Title="MainWindow"
+        Title="{Binding Title}"
         Width="800" Height="450">
-   <Grid>
+    <Window.DataContext>
+        <vm:MainWindowViewModel/>
+    </Window.DataContext>
+    <Grid>
        <Slider VerticalAlignment="Top" Margin="30,10" Minimum="0" Maximum="700"
                Name="HorizontalPos"/>
        <Slider Orientation="Vertical" HorizontalAlignment="Left" Margin="10,30" Minimum="0" Maximum="350"
@@ -36,5 +40,8 @@
 
         <Slider VerticalAlignment="Bottom" Margin="180,10" Minimum="-180" Maximum="180" Value="30"
                Name="Angle"/>
+
+       <TextBox VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="160" Margin="10"
+                Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}"/>
     </Grid>
 </Window>
