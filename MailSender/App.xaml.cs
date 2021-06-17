@@ -1,17 +1,48 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Security.Cryptography.X509Certificates;
 using System.Windows;
+using MailSender.ViewModels;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 
 namespace MailSender
 {
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
-    public partial class App : Application
+    public partial class App
     {
+        private static IHost __Hosting;
+
+        public static IHost Hosting => __Hosting 
+            ??= CreateHostBuilder(Environment.GetCommandLineArgs()).Build();
+
+        public static IServiceProvider Services => Hosting.Services;
+
+        public static IHostBuilder CreateHostBuilder(string[] Args) => Host
+           .CreateDefaultBuilder(Args)
+           .ConfigureAppConfiguration(opt => opt.AddJsonFile("settings.json", true, true))
+           .ConfigureLogging(opt => opt.AddDebug())
+           .ConfigureServices(ConfigureServices)
+        ;
+
+        private static void ConfigureServices(HostBuilderContext host, IServiceCollection services)
+        {
+            services.AddTransient<MainWindowViewModel>();
+        }
+
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            Hosting.Start();
+            base.OnStartup(e);
+
+            //var services = new ServiceCollection();
+            //services.AddScoped<MainWindowViewModel>();
+        }
+
+        protected override void OnExit(ExitEventArgs e)
+        {
+            base.OnExit(e);
+            Hosting.Dispose();
+        }
     }
 }

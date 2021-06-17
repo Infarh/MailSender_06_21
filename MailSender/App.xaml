@@ -4,6 +4,9 @@
              xmlns:local="clr-namespace:MailSender"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
+
+        <local:ServiceLocator x:Key="Locator"/>
+
         <Style TargetType="Button">
             <Setter Property="Background" Value="White"/>
         </Style>

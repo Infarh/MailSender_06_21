@@ -7,8 +7,8 @@
         xmlns:l="clr-namespace:MailSender"
         xmlns:data="clr-namespace:MailSender.Data"
         xmlns:model="clr-namespace:MailSender.Models;assembly=MailSender.lib"
-        Title="Рассыльщик почты"
-        Topmost="True"
+        Title="{Binding Title}"
+        DataContext="{Binding MainModel, Source={StaticResource Locator}}"
         Width="800" Height="450">
     <DockPanel>
         <Menu>
@@ -24,7 +24,7 @@
                 <ResizeGrip/>
             </StatusBarItem>
             <StatusBarItem>
-                <TextBlock Text="Готов!"/>
+                <TextBlock Text="{Binding Status}"/>
             </StatusBarItem>
         </StatusBar>
         <TabControl>
