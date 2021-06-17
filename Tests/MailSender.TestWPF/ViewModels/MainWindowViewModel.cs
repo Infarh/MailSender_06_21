@@ -1,4 +1,7 @@
-﻿using MailSender.TestWPF.ViewModels.Base;
+﻿using System.Windows;
+using System.Windows.Input;
+using MailSender.TestWPF.Commands;
+using MailSender.TestWPF.ViewModels.Base;
 
 namespace MailSender.TestWPF.ViewModels
 {
@@ -56,5 +59,17 @@ namespace MailSender.TestWPF.ViewModels
         private double _TopPos;
 
         public double TopPos { get => _TopPos; set => Set(ref _TopPos, value); }
+
+        private ICommand _ShowMessageCommand;
+
+        public ICommand ShowMessageCommand => _ShowMessageCommand
+            ??= new LambdaCommand(OnShowMessageCommandExecuted, CanShowMessageCommandExecute);
+
+        private bool CanShowMessageCommandExecute(object p) => p != null;
+
+        private void OnShowMessageCommandExecuted(object p)
+        {
+            MessageBox.Show(p.ToString());
+        }
     }
 }

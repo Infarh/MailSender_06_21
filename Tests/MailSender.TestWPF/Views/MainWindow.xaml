@@ -45,7 +45,7 @@
        <TextBox VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="160" Margin="10"
                 Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}"/>
 
-       <Button VerticalAlignment="Top" HorizontalAlignment="Left" Margin="40" Content="Привет!"
+       <!--<Button VerticalAlignment="Top" HorizontalAlignment="Left" Margin="40" Content="Привет!"
                Padding="30,10" RenderTransformOrigin="0.5,0.5">
            <Button.Command>
                <cmd:HelloCommand/>
@@ -53,6 +53,15 @@
            <Button.RenderTransform>
                 <RotateTransform Angle="-30"/>
             </Button.RenderTransform>
-        </Button>
+        </Button>-->
+       <Button VerticalAlignment="Top" HorizontalAlignment="Left" Margin="40" Content="Привет!"
+               Padding="30,10" RenderTransformOrigin="0.5,0.5" 
+               Command="{Binding ShowMessageCommand}"
+               CommandParameter="{Binding Value, ElementName=Angle}">
+           
+           <Button.RenderTransform>
+               <RotateTransform Angle="-30"/>
+           </Button.RenderTransform>
+       </Button>
     </Grid>
 </Window>
