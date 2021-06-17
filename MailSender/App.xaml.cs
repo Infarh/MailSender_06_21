@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Security.Cryptography.X509Certificates;
 using System.Windows;
+using MailSender.Servcies;
 using MailSender.ViewModels;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -28,6 +29,7 @@ namespace MailSender
         private static void ConfigureServices(HostBuilderContext host, IServiceCollection services)
         {
             services.AddTransient<MainWindowViewModel>();
+            services.AddSingleton<ServersRepository>();
         }
 
         protected override void OnStartup(StartupEventArgs e)

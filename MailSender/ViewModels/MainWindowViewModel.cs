@@ -1,16 +1,22 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Input;
 using MailSender.Commands;
-using MailSender.Data;
 using MailSender.Models;
+using MailSender.Servcies;
 using MailSender.ViewModels.Base;
 
 namespace MailSender.ViewModels
 {
     public class MainWindowViewModel : ViewModel
     {
+        private readonly ServersRepository _ServersRepository;
+
+        public MainWindowViewModel(ServersRepository ServersRepository)
+        {
+            _ServersRepository = ServersRepository;
+        }
+
         #region Title : string - Заголовок окна
 
         /// <summary>Заголовок окна</summary>
@@ -66,7 +72,7 @@ namespace MailSender.ViewModels
         private void OnLoadServersCommandExecuted(object p)
         {
             Servers.Clear();
-            foreach (var server in TestData.Servers)
+            foreach (var server in _ServersRepository.GetAll())
                 Servers.Add(server);
         }
 
