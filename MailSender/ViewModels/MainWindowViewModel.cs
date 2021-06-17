@@ -1,4 +1,7 @@
-﻿using MailSender.ViewModels.Base;
+﻿using System.Windows;
+using System.Windows.Input;
+using MailSender.Commands;
+using MailSender.ViewModels.Base;
 
 namespace MailSender.ViewModels
 {
@@ -23,5 +26,25 @@ namespace MailSender.ViewModels
         public string Status { get => _Status; set => Set(ref _Status, value); }
 
         #endregion
+
+        private ICommand _ExitCommand;
+
+        public ICommand ExitCommand => _ExitCommand
+            ??= new LambdaCommand(OnExitCommandExecuted);
+
+        private static void OnExitCommandExecuted(object _)
+        {
+            Application.Current.Shutdown();
+        }
+
+        private ICommand _AboutCommand;
+
+        public ICommand AboutCommand => _AboutCommand
+            ??= new LambdaCommand(OnAboutCommandExecuted);
+
+        private static void OnAboutCommandExecuted(object _)
+        {
+            MessageBox.Show("Рассыльщик почты", "О программе");
+        }
     }
 }

@@ -13,10 +13,10 @@
     <DockPanel>
         <Menu>
             <MenuItem Header="Файл">
-                <MenuItem Header="Выход" Click="Exit_OnClick"/>
+                <MenuItem Header="Выход" Command="{Binding ExitCommand}"/>
             </MenuItem>
             <MenuItem Header="Справка">
-                <MenuItem Header="О программе" Click="About_OnClick"/>
+                <MenuItem Header="О программе" Command="{Binding AboutCommand}"/>
             </MenuItem>
         </Menu>
         <StatusBar>
