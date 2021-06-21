@@ -24,7 +24,9 @@
                  Validation.Error="OnIdValidationError"/>
 
         <TextBlock Grid.Column="0" Grid.Row="1" Text="Имя:" HorizontalAlignment="Right"/>
-        <TextBox Grid.Column="1" Grid.Row="1" Margin="3" Text="{Binding SelectedRecipient.Name}" />
+        <TextBox Grid.Column="1" Grid.Row="1" Margin="3" 
+                 Text="{Binding SelectedRecipient.Name, NotifyOnValidationError=True, ValidatesOnExceptions=True, ValidatesOnDataErrors=True}"
+                 Validation.Error="OnIdValidationError"/>
 
         <TextBlock Grid.Column="0" Grid.Row="2" Text="Адрес:" HorizontalAlignment="Right"/>
         <TextBox Grid.Column="1" Grid.Row="2" Margin="3" Text="{Binding SelectedRecipient.Address}" />
