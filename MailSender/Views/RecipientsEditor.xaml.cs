@@ -10,11 +10,11 @@ namespace MailSender.Views
         {
             if (E.Action == ValidationErrorEventAction.Added)
             {
-                ((Control)Sender).ToolTip = E.Error.ErrorContent.ToString();
+                ((Control)E.OriginalSource).ToolTip = E.Error.ErrorContent.ToString();
             }
             else
             {
-                ((Control)Sender).ClearValue(ToolTipProperty);
+                ((Control)E.OriginalSource).ClearValue(ToolTipProperty);
             }
         }
     }

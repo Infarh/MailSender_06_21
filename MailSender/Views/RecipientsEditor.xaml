@@ -7,7 +7,27 @@
              xmlns:validation="clr-namespace:MailSender.Infrastructure.ValidationRules"
              DataContext="{Binding MainModel, Source={StaticResource Locator}}"
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Margin="10">
+    <Grid Margin="10" Validation.Error="OnIdValidationError">
+        <Grid.Resources>
+            <Style TargetType="TextBox">
+                <Setter Property="Margin" Value="3"/>
+                <Setter Property="Validation.ErrorTemplate">
+                    <Setter.Value>
+                        <ControlTemplate>
+                            <DockPanel>
+                                <TextBlock Text="!" DockPanel.Dock="Right"
+                                           FontWeight="Bold" Foreground="Red"
+                                           VerticalAlignment="Center"
+                                           Margin="3,0,0,0"/>
+                                <Border BorderBrush="Red" BorderThickness="3" CornerRadius="3" Padding="3">
+                                    <AdornedElementPlaceholder/>
+                                </Border>
+                            </DockPanel>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </Grid.Resources>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition/>
@@ -20,19 +40,18 @@
         </Grid.RowDefinitions>
 
         <TextBlock Grid.Column="0" Grid.Row="0" Text="Id:" HorizontalAlignment="Right"/>
-        <TextBox Grid.Column="1" Grid.Row="0" Margin="3" 
+        <TextBox Grid.Column="1" Grid.Row="0" 
                  Text="{Binding SelectedRecipient.Id, NotifyOnValidationError=True}" 
-                 Validation.Error="OnIdValidationError"/>
+                 />
 
         <TextBlock Grid.Column="0" Grid.Row="1" Text="Имя:" HorizontalAlignment="Right"/>
-        <TextBox Grid.Column="1" Grid.Row="1" Margin="3" 
+        <TextBox Grid.Column="1" Grid.Row="1" 
                  Text="{Binding SelectedRecipient.Name, NotifyOnValidationError=True, ValidatesOnExceptions=True, ValidatesOnDataErrors=True}"
-                 Validation.Error="OnIdValidationError"/>
+                 />
 
         <TextBlock Grid.Column="0" Grid.Row="2" Text="Адрес:" HorizontalAlignment="Right"/>
-        <TextBox Grid.Column="1" Grid.Row="2" Margin="3"
-                 Validation.Error="OnIdValidationError">
-            <Validation.ErrorTemplate>
+        <TextBox Grid.Column="1" Grid.Row="2">
+            <!--<Validation.ErrorTemplate>
                 <ControlTemplate>
                     <DockPanel>
                         <TextBlock Text="!" DockPanel.Dock="Right"
@@ -44,7 +63,7 @@
                         </Border>
                     </DockPanel>
                 </ControlTemplate>
-            </Validation.ErrorTemplate>
+            </Validation.ErrorTemplate>-->
             <TextBox.Text>
                 <Binding Path="SelectedRecipient.Address"
                          NotifyOnValidationError="True"
@@ -61,6 +80,6 @@
         </TextBox>
 
         <TextBlock Grid.Column="0" Grid.Row="3" Text="Описание:" HorizontalAlignment="Right"/>
-        <TextBox Grid.Column="1" Grid.Row="3" Margin="3" Text="{Binding SelectedRecipient.Description}" />
+        <TextBox Grid.Column="1" Grid.Row="3" Text="{Binding SelectedRecipient.Description}" />
     </Grid>
 </UserControl>
