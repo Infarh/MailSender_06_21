@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:fa="http://schemas.fontawesome.com/icons/"
+        xmlns:ex="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:l="clr-namespace:MailSender"
         xmlns:data="clr-namespace:MailSender.Data"
         xmlns:model="clr-namespace:MailSender.Models;assembly=MailSender.lib"
@@ -141,7 +142,7 @@
                             <TextBlock HorizontalAlignment="Center" Margin="0,5,0,0">Дата отправки</TextBlock>
                             <Calendar/>
                             <TextBlock HorizontalAlignment="Center" Margin="0,5,0,0">Время отправки</TextBlock>
-                            <TextBox Margin="3,0"/>
+                            <ex:TimePicker/>
                             <StackPanel Margin="5">
                                 <StackPanel.Resources>
                                     <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
