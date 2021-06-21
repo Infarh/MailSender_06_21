@@ -1,28 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿using System.Windows.Controls;
 
 namespace MailSender.Views
 {
-    /// <summary>
-    /// Логика взаимодействия для RecipientsEditor.xaml
-    /// </summary>
-    public partial class RecipientsEditor : UserControl
+    public partial class RecipientsEditor
     {
-        public RecipientsEditor()
+        public RecipientsEditor() => InitializeComponent();
+
+        private void OnIdValidationError(object Sender, ValidationErrorEventArgs E)
         {
-            InitializeComponent();
+            if (E.Action == ValidationErrorEventAction.Added)
+            {
+                ((Control)Sender).ToolTip = E.Error.ErrorContent.ToString();
+            }
+            else
+            {
+                ((Control)Sender).ClearValue(ToolTipProperty);
+            }
         }
     }
 }
