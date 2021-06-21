@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:l="clr-namespace:MailSender.Views"
+             xmlns:validation="clr-namespace:MailSender.Infrastructure.ValidationRules"
              DataContext="{Binding MainModel, Source={StaticResource Locator}}"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
@@ -29,7 +30,22 @@
                  Validation.Error="OnIdValidationError"/>
 
         <TextBlock Grid.Column="0" Grid.Row="2" Text="Адрес:" HorizontalAlignment="Right"/>
-        <TextBox Grid.Column="1" Grid.Row="2" Margin="3" Text="{Binding SelectedRecipient.Address}" />
+        <TextBox Grid.Column="1" Grid.Row="2" Margin="3"
+                 Validation.Error="OnIdValidationError">
+            <TextBox.Text>
+                <Binding Path="SelectedRecipient.Address"
+                         NotifyOnValidationError="True"
+                         UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <validation:RegExValidation Pattern="^[^@\s]+@[^@\s]+\.[^@\s]+$"
+                                                    ErrorMessage="Неверный формат адреса электронной почты"/>
+                        <DataErrorValidationRule/>
+                        <ExceptionValidationRule/>
+                        <NotifyDataErrorValidationRule/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
 
         <TextBlock Grid.Column="0" Grid.Row="3" Text="Описание:" HorizontalAlignment="Right"/>
         <TextBox Grid.Column="1" Grid.Row="3" Margin="3" Text="{Binding SelectedRecipient.Description}" />
