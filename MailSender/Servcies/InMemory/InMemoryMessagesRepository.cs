@@ -10,6 +10,7 @@ namespace MailSender.Servcies.InMemory
         private static IEnumerable<Message> GetTestData(int Count = 100) => Enumerable.Range(1, Count)
            .Select(i => new Message
             {
+                Id = i,
                 Title = $"Сообщение {i}",
                 Text = $"Текст сообщения {i}",
             });

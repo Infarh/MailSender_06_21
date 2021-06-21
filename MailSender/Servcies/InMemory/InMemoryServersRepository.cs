@@ -10,6 +10,7 @@ namespace MailSender.Servcies.InMemory
         private static IEnumerable<Server> GetTestData(int Count = 10) => Enumerable.Range(1, Count)
            .Select(i => new Server
             {
+                Id = i,
                 Name = $"Сервер {i}",
                 Address = $"smtp.server-{i}.ru",
                 Login = $"User-{i}",

@@ -9,6 +9,7 @@ namespace MailSender.Servcies.InMemory
         private static IEnumerable<Sender> GetTestData(int Count = 10) => Enumerable.Range(1, Count)
            .Select(i => new Sender
             {
+                Id = i,
                 Name = $"Отправитель {i}",
                 Address = $"sender-{i}.server.ru",
                 Description = $"Описание отправителя {i}"
