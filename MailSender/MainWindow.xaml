@@ -7,6 +7,7 @@
         xmlns:ex="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:l="clr-namespace:MailSender"
         xmlns:data="clr-namespace:MailSender.Data"
+        xmlns:v="clr-namespace:MailSender.Views"
         xmlns:model="clr-namespace:MailSender.Models;assembly=MailSender.lib"
         Title="{Binding Title}"
         DataContext="{Binding MainModel, Source={StaticResource Locator}}"
@@ -117,20 +118,14 @@
                                     ToolTip="Удаление"/>
                         </ToolBar>
                     </ToolBarTray>
-                    <DataGrid Grid.Row="1" AutoGenerateColumns="False"
-                              ItemsSource="{Binding Recipients}"
-                              GridLinesVisibility="Vertical"
-                              VerticalGridLinesBrush="Gray"
-                              AlternatingRowBackground="#4C87CEAB"
-                              CanUserAddRows="False"
-                              HeadersVisibility="Column">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="ID" MinWidth="40" MaxWidth="80" Binding="{Binding Id}"/>
-                            <DataGridTextColumn Header="Имя" Width="*" MinWidth="150" Binding="{Binding Name}"/>
-                            <DataGridTextColumn Header="Адрес" MinWidth="140" Binding="{Binding Address}"/>
-                            <DataGridTextColumn Header="Описание" MinWidth="120" Binding="{Binding Description}"/>
-                        </DataGrid.Columns>
-                    </DataGrid>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="5*"/>
+                            <ColumnDefinition Width="2*"/>
+                        </Grid.ColumnDefinitions>
+                        <v:RecipientsView Grid.Column="0"/>
+                        <v:RecipientsEditor Grid.Column="1"/>
+                    </Grid>
                 </Grid>
             </TabItem>
             <TabItem Header="Расписание">

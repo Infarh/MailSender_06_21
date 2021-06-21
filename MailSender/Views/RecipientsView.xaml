@@ -18,7 +18,9 @@
             <Button Content="Сохранить данные" Margin="3" Padding="15,5" IsEnabled="False"/>
         </UniformGrid>
         <DataGrid AutoGenerateColumns="False"
+                  IsReadOnly="True"
                   ItemsSource="{Binding Recipients}"
+                  SelectedItem="{Binding SelectedRecipient}"
                   GridLinesVisibility="Vertical"
                   VerticalGridLinesBrush="Gray"
                   AlternatingRowBackground="#4C87CEAB"
