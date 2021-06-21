@@ -11,7 +11,7 @@ namespace MailSender.Servcies.InMemory
             {
                 Id = i,
                 Name = $"Отправитель {i}",
-                Address = $"sender-{i}.server.ru",
+                Address = $"sender-{i}@server.ru",
                 Description = $"Описание отправителя {i}"
             });
 
