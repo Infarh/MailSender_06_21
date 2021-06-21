@@ -4,8 +4,10 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:fa="http://schemas.fontawesome.com/icons/"
+        xmlns:ex="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:l="clr-namespace:MailSender"
         xmlns:data="clr-namespace:MailSender.Data"
+        xmlns:v="clr-namespace:MailSender.Views"
         xmlns:model="clr-namespace:MailSender.Models;assembly=MailSender.lib"
         Title="{Binding Title}"
         DataContext="{Binding MainModel, Source={StaticResource Locator}}"
@@ -14,6 +16,9 @@
         <Menu>
             <MenuItem Header="Файл">
                 <MenuItem Header="Выход" Command="{Binding ExitCommand}"/>
+            </MenuItem>
+            <MenuItem Header="Данные">
+                <MenuItem Header="Загрузка" Command="{Binding LoadDataCommand}"/>
             </MenuItem>
             <MenuItem Header="Справка">
                 <MenuItem Header="О программе" Command="{Binding AboutCommand}"/>
@@ -40,7 +45,6 @@
                             <ComboBox Width="120" SelectedIndex="0"
                                       ItemsSource="{Binding Servers}"
                                       DisplayMemberPath="Name"/>
-                            <Button fa:Awesome.Content="Solid_Download" Command="{Binding LoadServersCommand}"/>
                             <Button>
                                 <StackPanel Orientation="Horizontal">
                                     <Image Height="20" Source="Media/add.png" Margin="0,0,3,0"/>
@@ -63,7 +67,7 @@
                         </ToolBar>
                         <ToolBar Band="1" BandIndex="0">
                             <Label Content="Отправители"/>
-                            <ComboBox Width="120" SelectedIndex="0" ItemsSource="{x:Static data:TestData.Senders}">
+                            <ComboBox Width="120" SelectedIndex="0" ItemsSource="{Binding Senders}">
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate DataType="{x:Type model:Sender}">
                                         <StackPanel Orientation="Horizontal" ToolTip="{Binding Description}">
@@ -114,20 +118,14 @@
                                     ToolTip="Удаление"/>
                         </ToolBar>
                     </ToolBarTray>
-                    <DataGrid Grid.Row="1" AutoGenerateColumns="False"
-                              ItemsSource="{x:Static data:TestData.Recipients}"
-                              GridLinesVisibility="Vertical"
-                              VerticalGridLinesBrush="Gray"
-                              AlternatingRowBackground="#4C87CEAB"
-                              CanUserAddRows="False"
-                              HeadersVisibility="Column">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="ID" MinWidth="40" MaxWidth="80" Binding="{Binding Id}"/>
-                            <DataGridTextColumn Header="Имя" Width="*" MinWidth="150" Binding="{Binding Name}"/>
-                            <DataGridTextColumn Header="Адрес" MinWidth="140" Binding="{Binding Address}"/>
-                            <DataGridTextColumn Header="Описание" MinWidth="120" Binding="{Binding Description}"/>
-                        </DataGrid.Columns>
-                    </DataGrid>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="5*"/>
+                            <ColumnDefinition Width="2*"/>
+                        </Grid.ColumnDefinitions>
+                        <v:RecipientsView Grid.Column="0"/>
+                        <v:RecipientsEditor Grid.Column="1"/>
+                    </Grid>
                 </Grid>
             </TabItem>
             <TabItem Header="Расписание">
@@ -141,7 +139,7 @@
                             <TextBlock HorizontalAlignment="Center" Margin="0,5,0,0">Дата отправки</TextBlock>
                             <Calendar/>
                             <TextBlock HorizontalAlignment="Center" Margin="0,5,0,0">Время отправки</TextBlock>
-                            <TextBox Margin="3,0"/>
+                            <ex:TimePicker/>
                             <StackPanel Margin="5">
                                 <StackPanel.Resources>
                                     <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
@@ -238,7 +236,7 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <GroupBox Grid.Column="0" Header="Письма">
-                        <ListBox ItemsSource="{x:Static data:TestData.Messages}"
+                        <ListBox ItemsSource="{Binding Messages}"
                                  Name="MessageList">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
