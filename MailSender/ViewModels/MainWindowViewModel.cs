@@ -75,22 +75,34 @@ namespace MailSender.ViewModels
         }
 
         public ObservableCollection<Server> Servers { get; } = new();
+        public ObservableCollection<Sender> Senders { get; } = new();
+        public ObservableCollection<Recipient> Recipients { get; } = new();
+        public ObservableCollection<Message> Messages { get; } = new();
 
-        #region Command LoadServersCommand - Загрузка серверов
+        #region Command LoadDataCommand - Загрузка данных
 
-        /// <summary>Загрузка серверов</summary>
-        private LambdaCommand _LoadServersCommand;
+        /// <summary>Загрузка данных</summary>
+        private LambdaCommand _LoadDataCommand;
 
-        /// <summary>Загрузка серверов</summary>
-        public ICommand LoadServersCommand => _LoadServersCommand
-            ??= new(OnLoadServersCommandExecuted);
+        /// <summary>Загрузка данных</summary>
+        public ICommand LoadDataCommand => _LoadDataCommand
+            ??= new(OnLoadDataCommandExecuted);
 
-        /// <summary>Логика выполнения - Загрузка серверов</summary>
-        private void OnLoadServersCommandExecuted(object p)
+        /// <summary>Логика выполнения - Загрузка данных</summary>
+        private void OnLoadDataCommandExecuted(object p)
         {
             Servers.Clear();
-            foreach (var server in _ServersRepository.GetAll())
-                Servers.Add(server);
+            Senders.Clear();
+            Recipients.Clear();
+            Messages.Clear();
+
+            foreach (var item in _ServersRepository.GetAll()) Servers.Add(item);
+
+            foreach (var item in _RecipientsRepository.GetAll()) Recipients.Add(item);
+
+            foreach (var item in _SendersRepository.GetAll()) Senders.Add(item);
+
+            foreach (var item in _MessagesRepository.GetAll()) Messages.Add(item);
         }
 
         #endregion

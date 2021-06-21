@@ -16,6 +16,9 @@
             <MenuItem Header="Файл">
                 <MenuItem Header="Выход" Command="{Binding ExitCommand}"/>
             </MenuItem>
+            <MenuItem Header="Данные">
+                <MenuItem Header="Загрузка" Command="{Binding LoadDataCommand}"/>
+            </MenuItem>
             <MenuItem Header="Справка">
                 <MenuItem Header="О программе" Command="{Binding AboutCommand}"/>
             </MenuItem>
@@ -41,7 +44,6 @@
                             <ComboBox Width="120" SelectedIndex="0"
                                       ItemsSource="{Binding Servers}"
                                       DisplayMemberPath="Name"/>
-                            <Button fa:Awesome.Content="Solid_Download" Command="{Binding LoadServersCommand}"/>
                             <Button>
                                 <StackPanel Orientation="Horizontal">
                                     <Image Height="20" Source="Media/add.png" Margin="0,0,3,0"/>
@@ -64,7 +66,7 @@
                         </ToolBar>
                         <ToolBar Band="1" BandIndex="0">
                             <Label Content="Отправители"/>
-                            <ComboBox Width="120" SelectedIndex="0" ItemsSource="{x:Static data:TestData.Senders}">
+                            <ComboBox Width="120" SelectedIndex="0" ItemsSource="{Binding Senders}">
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate DataType="{x:Type model:Sender}">
                                         <StackPanel Orientation="Horizontal" ToolTip="{Binding Description}">
@@ -116,7 +118,7 @@
                         </ToolBar>
                     </ToolBarTray>
                     <DataGrid Grid.Row="1" AutoGenerateColumns="False"
-                              ItemsSource="{x:Static data:TestData.Recipients}"
+                              ItemsSource="{Binding Recipients}"
                               GridLinesVisibility="Vertical"
                               VerticalGridLinesBrush="Gray"
                               AlternatingRowBackground="#4C87CEAB"
@@ -239,7 +241,7 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <GroupBox Grid.Column="0" Header="Письма">
-                        <ListBox ItemsSource="{x:Static data:TestData.Messages}"
+                        <ListBox ItemsSource="{Binding Messages}"
                                  Name="MessageList">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>

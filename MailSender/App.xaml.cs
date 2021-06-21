@@ -32,11 +32,11 @@ namespace MailSender
 
         private static void ConfigureServices(HostBuilderContext host, IServiceCollection services)
         {
-            services.AddTransient<MainWindowViewModel>();
-            services.AddSingleton<ServersRepository>();
+            services.AddSingleton<MainWindowViewModel>();
+            services.AddSingleton<IStatistic, InMemoryStatisticService>();
 
-            //services.AddSingleton<IStatistic, InMemoryStatisticService>();
             services.AddSingleton<IMailService, DebugMailService>();
+
             services.AddSingleton<IRepository<Server>, InMemoryServersRepository>();
             services.AddSingleton<IRepository<Sender>, InMemorySendersRepository>();
             services.AddSingleton<IRepository<Recipient>, InMemoryRecipientsRepository>();
