@@ -1,8 +1,9 @@
-﻿using MailSender.Models.Base;
+﻿using System.ComponentModel;
+using MailSender.Models.Base;
 
 namespace MailSender.Models
 {
-    public class Server : NamedEntity
+    public class Server : NamedEntity//, INotifyPropertyChanged
     {
         public string Address { get; set; }
 

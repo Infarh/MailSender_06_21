@@ -42,8 +42,9 @@
                     <ToolBarTray Grid.Row="0">
                         <ToolBar>
                             <Label Content="Сервера" Margin="0,0,25,0"/>
-                            <ComboBox Width="120" SelectedIndex="0"
+                            <ComboBox Width="120"
                                       ItemsSource="{Binding Servers}"
+                                      SelectedItem="{Binding SelectedServer}"
                                       DisplayMemberPath="Name"/>
                             <Button>
                                 <StackPanel Orientation="Horizontal">
@@ -51,7 +52,9 @@
                                     <TextBlock Text="Добавить"/>
                                 </StackPanel>
                             </Button>
-                            <Button ToolTip="Редактирование">
+                            <Button ToolTip="Редактирование"
+                                    Command="{Binding EditServerCommand}"
+                                    CommandParameter="{Binding SelectedServer}">
                                 <Image Height="20" Source="Media/edit.png"/>
                             </Button>
                             <Button>

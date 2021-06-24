@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Input;
+
 using MailSender.Commands;
 using MailSender.Interfaces;
 using MailSender.Models;
@@ -11,6 +12,7 @@ namespace MailSender.ViewModels
 {
     public class MainWindowViewModel : ViewModel
     {
+        private readonly IUserDialog _UserDialog;
         private readonly IRepository<Server> _ServersRepository;
         private readonly IRepository<Sender> _SendersRepository;
         private readonly IRepository<Recipient> _RecipientsRepository;
@@ -19,13 +21,15 @@ namespace MailSender.ViewModels
         private readonly IStatistic _Statistic;
 
         public MainWindowViewModel(
+            IUserDialog UserDialog,
             IRepository<Server> ServersRepository,
             IRepository<Sender> SendersRepository,
             IRepository<Recipient> RecipientsRepository,
             IRepository<Message> MessagesRepository,
-            IMailService MailService, 
+            IMailService MailService,
             IStatistic Statistic)
         {
+            _UserDialog = UserDialog;
             _ServersRepository = ServersRepository;
             _SendersRepository = SendersRepository;
             _RecipientsRepository = RecipientsRepository;
@@ -131,6 +135,35 @@ namespace MailSender.ViewModels
 
         /// <summary>Выбранный получатель</summary>
         public Recipient SelectedRecipient { get => _SelectedRecipient; set => Set(ref _SelectedRecipient, value); }
+
+        #endregion
+
+        #region SelectedServer : Server - Выбраный сервер
+
+        /// <summary>Выбраный сервер</summary>
+        private Server _SelectedServer;
+
+        /// <summary>Выбраный сервер</summary>
+        public Server SelectedServer { get => _SelectedServer; set => Set(ref _SelectedServer, value); }
+
+        #endregion
+
+        #region Command EditServerCommand - Редактирование сервера
+
+        /// <summary>Редактирование сервера</summary>
+        private LambdaCommand _EditServerCommand;
+
+        /// <summary>Редактирование сервера</summary>
+        public ICommand EditServerCommand => _EditServerCommand
+            ??= new(OnEditServerCommandExecuted, p => p is Server);
+
+        /// <summary>Логика выполнения - Редактирование сервера</summary>
+        private void OnEditServerCommandExecuted(object p)
+        {
+            if (p is not Server server) return;
+            if (_UserDialog.EditServer(server))
+                _ServersRepository.Update(server);
+        }
 
         #endregion
     }
