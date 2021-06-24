@@ -1,5 +1,7 @@
 ﻿using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 using MailSender.Commands;
@@ -101,12 +103,16 @@ namespace MailSender.ViewModels
             Messages.Clear();
 
             foreach (var item in _ServersRepository.GetAll()) Servers.Add(item);
+            SelectedServer = Servers.FirstOrDefault();
 
             foreach (var item in _RecipientsRepository.GetAll()) Recipients.Add(item);
+            SelectedRecipient = Recipients.FirstOrDefault();
 
             foreach (var item in _SendersRepository.GetAll()) Senders.Add(item);
+            SelectedSender = Senders.FirstOrDefault();
 
             foreach (var item in _MessagesRepository.GetAll()) Messages.Add(item);
+            SelectedMessage = Messages.FirstOrDefault();
         }
 
         #endregion
@@ -123,7 +129,16 @@ namespace MailSender.ViewModels
         /// <summary>Логика выполнения - Отправка почты</summary>
         private void OnSendMessageCommandExecuted(object p)
         {
-            _MailService.SendEmail("Отправитель", "Получатель", "Тема", "Тело письма");
+            var server = SelectedServer;
+
+            //_MailService.SendEmail("Отправитель", "Получатель", "Тема", "Тело письма");
+            var mail_sender = _MailService.GetSender(server.Address, server.Port, server.UseSSL, server.Login, server.Password);
+
+            var sender = SelectedSender;
+            var recipient = SelectedRecipient;
+            var message = SelectedMessage;
+
+            mail_sender.Send(sender.Address, recipient.Address, message.Title, message.Text);
         }
 
         #endregion
@@ -138,13 +153,33 @@ namespace MailSender.ViewModels
 
         #endregion
 
-        #region SelectedServer : Server - Выбраный сервер
+        #region SelectedSender : Sender - Выбранный отправитель
 
-        /// <summary>Выбраный сервер</summary>
+        /// <summary>Выбранный отправитель</summary>
+        private Sender _SelectedSender;
+
+        /// <summary>Выбранный отправитель</summary>
+        public Sender SelectedSender { get => _SelectedSender; set => Set(ref _SelectedSender, value); }
+
+        #endregion
+
+        #region SelectedServer : Server - Выбранный сервер
+
+        /// <summary>Выбранный сервер</summary>
         private Server _SelectedServer;
 
-        /// <summary>Выбраный сервер</summary>
+        /// <summary>Выбранный сервер</summary>
         public Server SelectedServer { get => _SelectedServer; set => Set(ref _SelectedServer, value); }
+
+        #endregion
+
+        #region SelectedMessage : Message - Выбранное сообщение
+
+        /// <summary>Выбранное сообщение</summary>
+        private Message _SelectedMessage;
+
+        /// <summary>Выбранное сообщение</summary>
+        public Message SelectedMessage { get => _SelectedMessage; set => Set(ref _SelectedMessage, value); }
 
         #endregion
 

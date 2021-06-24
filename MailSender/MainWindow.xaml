@@ -70,7 +70,8 @@
                         </ToolBar>
                         <ToolBar Band="1" BandIndex="0">
                             <Label Content="Отправители"/>
-                            <ComboBox Width="120" SelectedIndex="0" ItemsSource="{Binding Senders}">
+                            <ComboBox Width="120" SelectedIndex="0" ItemsSource="{Binding Senders}"
+                                      SelectedItem="{Binding SelectedSender}">
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate DataType="{x:Type model:Sender}">
                                         <StackPanel Orientation="Horizontal" ToolTip="{Binding Description}">
@@ -240,6 +241,7 @@
                     </Grid.ColumnDefinitions>
                     <GroupBox Grid.Column="0" Header="Письма">
                         <ListBox ItemsSource="{Binding Messages}"
+                                 SelectedItem="{Binding SelectedMessage}"
                                  Name="MessageList">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>

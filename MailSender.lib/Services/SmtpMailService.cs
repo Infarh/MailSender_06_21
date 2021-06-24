@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
-using System.Diagnostics;
+using System.Net;
+using System.Net.Mail;
 using System.Threading;
 using MailSender.Interfaces;
 
 namespace MailSender.Services
 {
-    public class DebugMailService : IMailService
+    public class SmtpMailService : IMailService
     {
         public IMailSender GetSender(string ServerAddress, int Port, bool UseSSL, string Login, string Password)
         {
@@ -31,9 +32,23 @@ namespace MailSender.Services
 
             public void Send(string SenderAddress, string RecipientAddress, string Subject, string Body)
             {
-                Debug.WriteLine($"Отправка почты через {_ServerAddress}:{_Port} ssl:{_UseSsl}\r\n\t"
-                    + $"from {SenderAddress} to {RecipientAddress}\r\n\t"
-                    + $"msg ({Subject}):{Body}");
+                using var client = new SmtpClient(_ServerAddress, _Port)
+                {
+                    EnableSsl = _UseSsl,
+                    Credentials = new NetworkCredential
+                    {
+                        UserName = _Login,
+                        Password = _Password
+                    }
+                };
+
+                using var message = new MailMessage(SenderAddress, RecipientAddress)
+                {
+                    Subject = Subject,
+                    Body = Body
+                };
+
+                client.Send(message);
             }
 
             public void Send(string SenderAddress, IEnumerable<string> RecipientsAddresses, string Subject, string Body)
@@ -46,9 +61,9 @@ namespace MailSender.Services
             {
                 foreach (var recipient_address in RecipientsAddresses)
                     //ThreadPool.QueueUserWorkItem(_ => Send(SenderAddress, recipient_address, Subject, Body));
-                    ThreadPool.QueueUserWorkItem(p =>
-                            Send((string)((object[])p)[0], (string)((object[])p)[1], (string)((object[])p)[2], (string)((object[])p)[3]),
-                        new[] { SenderAddress, recipient_address, Subject, Body });
+                    ThreadPool.QueueUserWorkItem(p => 
+                        Send((string)((object[])p)[0], (string)((object[])p)[1], (string)((object[])p)[2], (string)((object[])p)[3]),
+                        new [] { SenderAddress, recipient_address, Subject, Body });
             }
         }
     }
