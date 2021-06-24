@@ -1,0 +1,53 @@
+﻿<Window x:Class="MailSender.Views.ServerEditorDialogWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" mc:Ignorable="d"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:l="clr-namespace:MailSender.Views"
+        xmlns:v="clr-namespace:MailSender.ViewModels"
+        Title="ServerEditorDialogWindow"
+        d:DataContext="{d:DesignInstance v:ServerEditorDialogViewModel, IsDesignTimeCreatable=True}"
+        Width="355" Height="183">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Column="0" Grid.Row="0" Text="Название:"/>
+        <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding Name}"/>
+
+        <TextBlock Grid.Column="0" Grid.Row="1" Text="Адрес:"/>
+        <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding Address}"/>
+
+        <TextBlock Grid.Column="0" Grid.Row="2" Text="Порт:"/>
+        <TextBox Grid.Column="1"   Grid.Row="2" Text="{Binding Port}"/>
+
+        <TextBlock Grid.Column="0" Grid.Row="3" Text="SSL:"/>
+        <CheckBox Grid.Column="1" Grid.Row="3" IsChecked="{Binding UseSSL}"/>
+
+        <TextBlock Grid.Column="0" Grid.Row="4" Text="Имя пользователя:"/>
+        <TextBox Grid.Column="1"   Grid.Row="4" Text="{Binding Login}"/>
+
+        <TextBlock Grid.Column="0" Grid.Row="5" Text="Пароль:"/>
+        <TextBox Grid.Column="1"   Grid.Row="5" Text="{Binding Password}"/>
+
+        <UniformGrid Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="2" Rows="1"
+                     VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Button Content="Ok" Margin="3" Padding="30,5" 
+                    IsDefault="True" FontWeight="Bold"
+                    Command="{Binding OkCommand}"/>
+            <Button Content="Cancel" Margin="3" Padding="30,5" IsCancel="True"
+                    Command="{Binding CancelCommand}"/>
+        </UniformGrid>
+    </Grid>
+</Window>

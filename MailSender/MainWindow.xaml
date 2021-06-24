@@ -42,8 +42,9 @@
                     <ToolBarTray Grid.Row="0">
                         <ToolBar>
                             <Label Content="Сервера" Margin="0,0,25,0"/>
-                            <ComboBox Width="120" SelectedIndex="0"
+                            <ComboBox Width="120"
                                       ItemsSource="{Binding Servers}"
+                                      SelectedItem="{Binding SelectedServer}"
                                       DisplayMemberPath="Name"/>
                             <Button>
                                 <StackPanel Orientation="Horizontal">
@@ -51,7 +52,9 @@
                                     <TextBlock Text="Добавить"/>
                                 </StackPanel>
                             </Button>
-                            <Button ToolTip="Редактирование">
+                            <Button ToolTip="Редактирование"
+                                    Command="{Binding EditServerCommand}"
+                                    CommandParameter="{Binding SelectedServer}">
                                 <Image Height="20" Source="Media/edit.png"/>
                             </Button>
                             <Button>
@@ -67,7 +70,8 @@
                         </ToolBar>
                         <ToolBar Band="1" BandIndex="0">
                             <Label Content="Отправители"/>
-                            <ComboBox Width="120" SelectedIndex="0" ItemsSource="{Binding Senders}">
+                            <ComboBox Width="120" SelectedIndex="0" ItemsSource="{Binding Senders}"
+                                      SelectedItem="{Binding SelectedSender}">
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate DataType="{x:Type model:Sender}">
                                         <StackPanel Orientation="Horizontal" ToolTip="{Binding Description}">
@@ -237,6 +241,7 @@
                     </Grid.ColumnDefinitions>
                     <GroupBox Grid.Column="0" Header="Письма">
                         <ListBox ItemsSource="{Binding Messages}"
+                                 SelectedItem="{Binding SelectedMessage}"
                                  Name="MessageList">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>

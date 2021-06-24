@@ -36,11 +36,14 @@ namespace MailSender
             services.AddSingleton<IStatistic, InMemoryStatisticService>();
 
             services.AddSingleton<IMailService, DebugMailService>();
+            //services.AddSingleton<IMailService, SmtpMailService>();
 
             services.AddSingleton<IRepository<Server>, InMemoryServersRepository>();
             services.AddSingleton<IRepository<Sender>, InMemorySendersRepository>();
             services.AddSingleton<IRepository<Recipient>, InMemoryRecipientsRepository>();
             services.AddSingleton<IRepository<Message>, InMemoryMessagesRepository>();
+
+            services.AddSingleton<IUserDialog, WindowUserDialogService>();
         }
 
         protected override void OnStartup(StartupEventArgs e)
