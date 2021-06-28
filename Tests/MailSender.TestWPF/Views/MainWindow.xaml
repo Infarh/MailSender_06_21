@@ -18,7 +18,11 @@
         <TextBlock DockPanel.Dock="Top" Name="Result" Text="Empty" 
                    HorizontalAlignment="Center" Margin="20"
                    FontWeight="Bold" FontSize="30"/>
-        <Button Content="Start" VerticalAlignment="Center" HorizontalAlignment="Center"
-                Padding="30,0" Click="Start_OnClick"/>
+        <UniformGrid Rows="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Button Content="Start"  Margin="3"
+                    Padding="30,0" Click="Start_OnClick"/>
+            <Button Content="Cancel" Margin="3" Name="CancelButton" IsEnabled="False"
+                    Padding="30,0" Click="Cancel_OnClick"/>
+        </UniformGrid>
     </DockPanel>
 </Window>
