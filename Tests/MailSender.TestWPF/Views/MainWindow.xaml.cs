@@ -1,36 +1,47 @@
-﻿namespace MailSender.TestWPF
+﻿using System;
+using System.Threading;
+using System.Windows;
+
+namespace MailSender.TestWPF
 {
     public partial class MainWindow
     {
         public MainWindow() => InitializeComponent();
 
-        //private void SendButton_OnClick(object sender, RoutedEventArgs e)
-        //{
-        //    using var message = new MailMessage("shmachilin@yandex.ru", "shmachilin@gmail.com");
-        //    message.Subject = "Тестовое сообщение от " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.ff");
-        //    message.Body = "Тело тестового сообщения " + DateTime.Now.ToString("F");
+        private void Start_OnClick(object Sender, RoutedEventArgs E)
+        {
+            var thread_id = Thread.CurrentThread.ManagedThreadId;
 
-        //    //message.Attachments.Add(new Attachment());
+            new Thread(() => Calculate()) { IsBackground = true }.Start();
+        }
 
-        //    using var client = new SmtpClient("smtp.yandex.ru", 25)
-        //    {
-        //        EnableSsl = true,
-        //        Credentials = new NetworkCredential
-        //        {
-        //            UserName = LoginEdit.Text,
-        //            SecurePassword = PasswordEdit.SecurePassword,
-        //        }
-        //    };
+        private void Calculate(int Max = 100, int Timeout = 100)
+        {
+            var thread_id = Thread.CurrentThread.ManagedThreadId;
 
-        //    try
-        //    {
-        //        client.Send(message);
-        //        MessageBox.Show("Почта успешно отправлена", "Отправка почты", MessageBoxButton.OK, MessageBoxImage.Information);
-        //    }
-        //    catch (SmtpException smtp_exception)
-        //    {
-        //        MessageBox.Show(smtp_exception.Message, "Ошибка при отправке почты", MessageBoxButton.OK, MessageBoxImage.Error);
-        //    }
-        //}
+            var dispatcher = Application.Current.Dispatcher;
+
+            var s = 0;
+            for (var i = 1; i <= Max; i++)
+            {
+                //Application.Current.Dispatcher.BeginInvoke(new Action(
+                dispatcher.BeginInvoke(new Action(
+                    () =>
+                    {
+                        Progress.Value = i;
+                    }));
+
+                s += i;
+                Thread.Sleep(Timeout);
+            }
+
+            //Result.Dispatcher.Invoke(
+            dispatcher.Invoke(
+                () =>
+                {
+                    Result.Text = s.ToString();
+                });
+            
+        }
     }
 }
