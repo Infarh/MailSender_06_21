@@ -8,10 +8,13 @@ namespace MailSender.TestConsole
 {
     class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
             //TasksOverview.Run();
-            TPLOverview.Run();
+            //TPLOverview.Run();
+            //TasksOverview.RunAsync().Wait();
+            //await TasksOverview.RunAsync();
+            await ReadingFileTest.RunAsync();
 
             Console.WriteLine("Работа завершена. Нажмите Enter для выхода");
             Console.ReadLine();

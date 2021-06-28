@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -85,5 +87,62 @@ namespace MailSender.TestConsole
             }
         }
 
+        public static async Task RunAsync()
+        {
+            var rnd = new Random(100);
+            var messages = Enumerable
+               .Range(1, 100)
+               .Select(i => $"Message = {i}: {new string('*', rnd.Next(5, 31))}")
+               .ToArray();
+
+            //foreach (var msg in messages)
+            //    ProcessMessage(msg);
+
+            //return Task.CompletedTask;
+            //return new Task(() => { });
+            //return Task.Run(() => { });
+
+            //foreach (var message in messages)
+            //{
+            //    var result = await Task.Run(() => ProcessMessage(message));
+            //    Console.WriteLine("Результат обработки {0}", result);
+            //}
+
+            //var tasks = new List<Task<string>>();
+            //foreach (var message in messages)
+            //    tasks.Add(Task.Run(() => ProcessMessage(message)));
+
+            //Task.WaitAll(tasks.ToArray()); // плохой тон
+
+            //var first_task = await Task.WhenAny(tasks);
+
+            //var first_task_result = first_task.Result; // Так не надо!!!
+            //var first_task_result = await first_task;
+
+            //var results = await Task.WhenAll(tasks);
+
+            //var results = await Task.WhenAll(messages.Select(msg => Task.Run(() => ProcessMessage(msg))));
+            //var processing_tasks = messages.Select(msg => Task.Run(() => ProcessMessage(msg)));
+            var processing_tasks = messages.Select(msg => Task.Run(() => ProcessMessageAsync(msg)));
+            var results = await Task.WhenAll(processing_tasks);
+        }
+
+        private static string ProcessMessage(string msg)
+        {
+            Console.WriteLine("Processing message {0} started at ThID:{1}", msg, Thread.CurrentThread.ManagedThreadId);
+            Thread.Sleep(500);
+            Console.WriteLine("Processing message {0} started at ThID:{1}", msg, Thread.CurrentThread.ManagedThreadId);
+
+            return $"Processed message: {msg}";
+        }
+
+        private static async Task<string> ProcessMessageAsync(string msg)
+        {
+            Console.WriteLine("Processing message {0} started at ThID:{1}", msg, Thread.CurrentThread.ManagedThreadId);
+            await Task.Delay(500);
+            Console.WriteLine("Processing message {0} started at ThID:{1}", msg, Thread.CurrentThread.ManagedThreadId);
+
+            return $"Processed message: {msg}";
+        }
     }
 }
