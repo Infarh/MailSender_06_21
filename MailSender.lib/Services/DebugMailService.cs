@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading;
+using System.Threading.Tasks;
+
 using MailSender.Interfaces;
 
 namespace MailSender.Services
@@ -49,6 +51,36 @@ namespace MailSender.Services
                     ThreadPool.QueueUserWorkItem(p =>
                             Send((string)((object[])p)[0], (string)((object[])p)[1], (string)((object[])p)[2], (string)((object[])p)[3]),
                         new[] { SenderAddress, recipient_address, Subject, Body });
+            }
+
+            public Task SendAsync(
+                string SenderAddress, 
+                string RecipientAddress, 
+                string Subject, string Body, 
+                CancellationToken Cancel = default)
+            {
+                Debug.WriteLine("Отправка почты ... асинхронно");
+                return Task.CompletedTask;
+            }
+
+            public Task SendAsync(
+                string SenderAddress,
+                IEnumerable<string> RecipientsAddresses, 
+                string Subject, string Body,
+                CancellationToken Cancel = default)
+            {
+                Debug.WriteLine("Отправка почты ... асинхронно последовательно по списку получателей");
+                return Task.CompletedTask;
+            }
+
+            public Task SendParallelAsync(
+                string SenderAddress, 
+                IEnumerable<string> RecipientsAddresses,
+                string Subject, string Body, 
+                CancellationToken Cancel = default)
+            {
+                Debug.WriteLine("Отправка почты ... асинхронно параллельно по списку получателей");
+                return Task.CompletedTask;
             }
         }
     }

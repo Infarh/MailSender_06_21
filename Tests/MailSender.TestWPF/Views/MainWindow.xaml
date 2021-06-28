@@ -8,60 +8,21 @@
         xmlns:cmd="clr-namespace:MailSender.TestWPF.Commands"
         Topmost="True"
         Title="{Binding Title}"
-        Width="800" Height="450">
+        Width="341" Height="267">
     <Window.DataContext>
         <vm:MainWindowViewModel/>
     </Window.DataContext>
-    <Grid>
-       <Slider VerticalAlignment="Top" Margin="30,10" Minimum="0" Maximum="700"
-               Name="HorizontalPos"/>
-       <Slider Orientation="Vertical" HorizontalAlignment="Left" Margin="10,30" Minimum="0" Maximum="350"
-               Name="VerticalPos"/>
-
-       <TextBox HorizontalAlignment="Right" Margin="40,50" VerticalAlignment="Top" Width="120"
-                Text="{Binding Value, ElementName=HorizontalPos, StringFormat=f2}"/>
-
-       <TextBox HorizontalAlignment="Left" Margin="10,10" VerticalAlignment="Bottom" Width="120"
-                Text="{Binding Value, ElementName=VerticalPos, StringFormat=f2}"/>
-
-       <Canvas Margin="30">
-           <Ellipse Width="70" Height="30" Fill="DarkBlue" Stroke="Red" StrokeThickness="3" RenderTransformOrigin="0.5,0.5"
-                    Canvas.Left="{Binding Value, ElementName=HorizontalPos}" 
-                    Canvas.Bottom="{Binding Value, ElementName=VerticalPos}">
-                <Ellipse.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform/>
-                        <RotateTransform Angle="{Binding ElementName=Angle, Path=Value}"/>
-                        <TranslateTransform/>
-                    </TransformGroup>
-                </Ellipse.RenderTransform>
-            </Ellipse>
-        </Canvas>
-
-        <Slider VerticalAlignment="Bottom" Margin="180,10" Minimum="-180" Maximum="180" Value="30"
-               Name="Angle"/>
-
-       <TextBox VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="160" Margin="10"
-                Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}"/>
-
-       <!--<Button VerticalAlignment="Top" HorizontalAlignment="Left" Margin="40" Content="Привет!"
-               Padding="30,10" RenderTransformOrigin="0.5,0.5">
-           <Button.Command>
-               <cmd:HelloCommand/>
-           </Button.Command>
-           <Button.RenderTransform>
-                <RotateTransform Angle="-30"/>
-            </Button.RenderTransform>
-        </Button>-->
-       <Button VerticalAlignment="Top" HorizontalAlignment="Left" Margin="40" Content="Привет!"
-               Padding="30,10" RenderTransformOrigin="0.5,0.5" 
-               Command="{Binding ShowMessageCommand}"
-               CommandParameter="{Binding Value, ElementName=Angle}">
-           
-           <Button.RenderTransform>
-               <RotateTransform Angle="-30"/>
-           </Button.RenderTransform>
-       </Button>
-    </Grid>
+    <DockPanel>
+        <ProgressBar DockPanel.Dock="Top" Name="Progress" Maximum="100" Value="50"
+                     Margin="20" Height="15"/>
+        <TextBlock DockPanel.Dock="Top" Name="Result" Text="Empty" 
+                   HorizontalAlignment="Center" Margin="20"
+                   FontWeight="Bold" FontSize="30"/>
+        <UniformGrid Rows="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Button Content="Start"  Margin="3"
+                    Padding="30,0" Click="Start_OnClick"/>
+            <Button Content="Cancel" Margin="3" Name="CancelButton" IsEnabled="False"
+                    Padding="30,0" Click="Cancel_OnClick"/>
+        </UniformGrid>
+    </DockPanel>
 </Window>
