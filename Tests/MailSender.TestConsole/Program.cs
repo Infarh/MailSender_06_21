@@ -7,9 +7,6 @@ namespace MailSender.TestConsole
     {
         static void Main(string[] args)
         {
-            //ThreadsIntro.Run();
-            //CriticalSection.Run();
-            ThreadSynchronization.Run();
 
 
             Console.WriteLine("Работа завершена. Нажмите Enter для выхода");
