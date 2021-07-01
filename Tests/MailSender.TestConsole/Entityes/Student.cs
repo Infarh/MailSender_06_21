@@ -16,8 +16,8 @@ namespace MailSender.TestConsole.Entityes
         //public Guid StudentId { get; set; }
         //[Key] public int OtherPrimaryKey { get; set; }
 
-        [Required]
-        [MaxLength(100)]
+        //[Required]
+        //[MaxLength(100)]
         public string Name { get; set; }
 
         [MaxLength(100)]
