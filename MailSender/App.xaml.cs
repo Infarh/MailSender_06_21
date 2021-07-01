@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Security.Cryptography.X509Certificates;
 using System.Windows;
+using MailSender.Data;
 using MailSender.Interfaces;
 using MailSender.Models;
 using MailSender.Servcies;
 using MailSender.Servcies.InMemory;
 using MailSender.Services;
 using MailSender.ViewModels;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -32,6 +34,8 @@ namespace MailSender
 
         private static void ConfigureServices(HostBuilderContext host, IServiceCollection services)
         {
+            services.AddDbContext<MailSenderDB>(opt => opt.UseSqlServer(host.Configuration.GetConnectionString("SqlServer")));
+
             //services.AddSingleton<>();
             //services.AddScoped<>();
             //services.AddTransient<>();
