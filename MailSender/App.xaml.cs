@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Security.Cryptography.X509Certificates;
 using System.Windows;
+using MailSender.Data;
 using MailSender.Interfaces;
 using MailSender.Models;
 using MailSender.Servcies;
 using MailSender.Servcies.InMemory;
 using MailSender.Services;
 using MailSender.ViewModels;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -32,18 +34,27 @@ namespace MailSender
 
         private static void ConfigureServices(HostBuilderContext host, IServiceCollection services)
         {
-            services.AddSingleton<MainWindowViewModel>();
-            services.AddSingleton<IStatistic, InMemoryStatisticService>();
+            services.AddDbContext<MailSenderDB>(opt => opt.UseSqlServer(host.Configuration.GetConnectionString("SqlServer")));
 
-            services.AddSingleton<IMailService, DebugMailService>();
-            //services.AddSingleton<IMailService, SmtpMailService>();
+            //services.AddSingleton<>();
+            //services.AddScoped<>();
+            //services.AddTransient<>();
 
-            services.AddSingleton<IRepository<Server>, InMemoryServersRepository>();
-            services.AddSingleton<IRepository<Sender>, InMemorySendersRepository>();
-            services.AddSingleton<IRepository<Recipient>, InMemoryRecipientsRepository>();
-            services.AddSingleton<IRepository<Message>, InMemoryMessagesRepository>();
+            services.AddScoped<MainWindowViewModel>();
+            services.AddScoped<IStatistic, InMemoryStatisticService>();
+            services.AddScoped<IMailScheduler, MailSchedulerTPL>();
 
-            services.AddSingleton<IUserDialog, WindowUserDialogService>();
+            services.AddScoped<IMailService, DebugMailService>();
+            //services.AddScoped<IMailService, SmtpMailService>();
+
+            services.AddScoped<IRepository<Server>, InMemoryServersRepository>();
+            services.AddScoped<IRepository<Sender>, InMemorySendersRepository>();
+            services.AddScoped<IRepository<Recipient>, InMemoryRecipientsRepository>();
+            services.AddScoped<IRepository<Message>, InMemoryMessagesRepository>();
+            services.AddScoped<IRepository<SchedulerTask>, InMemorySchedulerTasksRepository>();
+            services.AddScoped<IRepository<EmailsList>, InMemoryEmailsListsRepository>();
+
+            services.AddScoped<IUserDialog, WindowUserDialogService>();
         }
 
         protected override void OnStartup(StartupEventArgs e)
