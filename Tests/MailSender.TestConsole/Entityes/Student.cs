@@ -30,6 +30,9 @@ namespace MailSender.TestConsole.Entityes
 
         public double? Rating { get; set; }
 
+        [MaxLength(500)]
+        public string Comment { get; set; }
+
         public ICollection<Course> Courses { get; set; } = new HashSet<Course>();
     }
 }
