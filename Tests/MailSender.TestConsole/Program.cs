@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Reflection;
 
 namespace MailSender.TestConsole
@@ -29,6 +30,12 @@ namespace MailSender.TestConsole
             //EventInfo @event;
 
             //ParameterInfo parameter;
+
+            Assembly test_lib = Assembly.LoadFile(Path.GetFullPath("testlib.dll"));
+
+            var printer_type = test_lib.GetType("TestLib.Printer");
+
+
         }
     }
 }
