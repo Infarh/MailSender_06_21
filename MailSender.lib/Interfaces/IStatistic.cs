@@ -11,6 +11,8 @@ namespace MailSender.Interfaces
 
         int RecipientsCount { get; }
 
+        int ServersCount { get; }
+
         TimeSpan UpTime { get; }
 
         void MessageSended();

@@ -55,6 +55,8 @@ namespace MailSender
             services.AddScoped<IRepository<EmailsList>, InMemoryEmailsListsRepository>();
 
             services.AddScoped<IUserDialog, WindowUserDialogService>();
+
+            services.AddScoped<IReportService, OpenXMLReportService>();
         }
 
         protected override void OnStartup(StartupEventArgs e)

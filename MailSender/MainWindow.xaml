@@ -20,6 +20,9 @@
             <MenuItem Header="Данные">
                 <MenuItem Header="Загрузка" Command="{Binding LoadDataCommand}"/>
             </MenuItem>
+            <MenuItem Header="Отчёты">
+                <MenuItem Header="Статистика" Command="{Binding CreateReportCommand}"/>
+            </MenuItem>
             <MenuItem Header="Справка">
                 <MenuItem Header="О программе" Command="{Binding AboutCommand}"/>
             </MenuItem>
