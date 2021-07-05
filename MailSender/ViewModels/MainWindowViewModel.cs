@@ -1,4 +1,6 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -21,6 +23,7 @@ namespace MailSender.ViewModels
         private readonly IRepository<Message> _MessagesRepository;
         private readonly IMailService _MailService;
         private readonly IStatistic _Statistic;
+        private readonly IReportService _ReportService;
 
         public MainWindowViewModel(
             IUserDialog UserDialog,
@@ -29,7 +32,8 @@ namespace MailSender.ViewModels
             IRepository<Recipient> RecipientsRepository,
             IRepository<Message> MessagesRepository,
             IMailService MailService,
-            IStatistic Statistic)
+            IStatistic Statistic,
+            IReportService ReportService)
         {
             _UserDialog = UserDialog;
             _ServersRepository = ServersRepository;
@@ -38,6 +42,7 @@ namespace MailSender.ViewModels
             _MessagesRepository = MessagesRepository;
             _MailService = MailService;
             _Statistic = Statistic;
+            _ReportService = ReportService;
         }
 
         #region Title : string - Заголовок окна
@@ -198,6 +203,25 @@ namespace MailSender.ViewModels
             if (p is not Server server) return;
             if (_UserDialog.EditServer(server))
                 _ServersRepository.Update(server);
+        }
+
+        #endregion
+
+        #region Command CreateReportCommand - Создать отчёт
+
+        /// <summary>Создать отчёт</summary>
+        private LambdaCommand _CreateReportCommand;
+
+        /// <summary>Создать отчёт</summary>
+        public ICommand CreateReportCommand => _CreateReportCommand ??= new(OnCreateReportCommandExecuted);
+
+        /// <summary>Логика выполнения - Создать отчёт</summary>
+        private void OnCreateReportCommandExecuted(object p)
+        {
+            var file_name = $"Report[{DateTime.Now:yyyy-MM-dd}].docx";
+            _ReportService.CreateStatisticReport(file_name);
+
+            Process.Start(new ProcessStartInfo(file_name) { UseShellExecute = true });
         }
 
         #endregion

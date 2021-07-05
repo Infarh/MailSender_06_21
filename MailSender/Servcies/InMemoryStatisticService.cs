@@ -16,6 +16,8 @@ namespace MailSender.Servcies
 
         public int RecipientsCount => TestData.Recipients.Count;
 
+        public int ServersCount => TestData.Servers.Count;
+
         private readonly Stopwatch _Timer = Stopwatch.StartNew();
         public TimeSpan UpTime => _Timer.Elapsed;
 

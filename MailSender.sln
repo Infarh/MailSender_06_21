@@ -13,7 +13,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MailSender.TestWPF", "Tests
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MailSender.lib", "MailSender.lib\MailSender.lib.csproj", "{DAFD7D7E-1333-4CFB-B6C7-65914E528706}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MailSender.lib.Tests", "Tests\MailSender.lib.Tests\MailSender.lib.Tests.csproj", "{3B4943EE-55E4-4C72-B963-534F0FFFB27D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MailSender.lib.Tests", "Tests\MailSender.lib.Tests\MailSender.lib.Tests.csproj", "{3B4943EE-55E4-4C72-B963-534F0FFFB27D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MailSender.Reports", "MailSender.Reports\MailSender.Reports.csproj", "{82B17701-A7D7-4FCB-9470-54E11ED55CF2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestLib", "Tests\TestLib\TestLib.csproj", "{89A0085D-01D6-4BFD-939E-9568BB481D2A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +45,14 @@ Global
 		{3B4943EE-55E4-4C72-B963-534F0FFFB27D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3B4943EE-55E4-4C72-B963-534F0FFFB27D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3B4943EE-55E4-4C72-B963-534F0FFFB27D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{82B17701-A7D7-4FCB-9470-54E11ED55CF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82B17701-A7D7-4FCB-9470-54E11ED55CF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82B17701-A7D7-4FCB-9470-54E11ED55CF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82B17701-A7D7-4FCB-9470-54E11ED55CF2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89A0085D-01D6-4BFD-939E-9568BB481D2A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89A0085D-01D6-4BFD-939E-9568BB481D2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89A0085D-01D6-4BFD-939E-9568BB481D2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89A0085D-01D6-4BFD-939E-9568BB481D2A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -49,6 +61,7 @@ Global
 		{BEDE8D1B-405E-40E0-A8F3-C263369B5114} = {9AAB9023-ABAA-4BAB-8DB8-CBD36A23D00D}
 		{A6E81100-B270-4919-8E7A-9C484FA3B3D1} = {9AAB9023-ABAA-4BAB-8DB8-CBD36A23D00D}
 		{3B4943EE-55E4-4C72-B963-534F0FFFB27D} = {9AAB9023-ABAA-4BAB-8DB8-CBD36A23D00D}
+		{89A0085D-01D6-4BFD-939E-9568BB481D2A} = {9AAB9023-ABAA-4BAB-8DB8-CBD36A23D00D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7FED0B08-4E34-46F3-986D-B509ACB7854C}
